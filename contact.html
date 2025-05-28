@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BEH - Bureau d'Étude Hydraulique</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css">
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#1e88e5',secondary:'#64b5f6'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'8px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Poppins', sans-serif;
+}
+.hero-section {
+background-position: center;
+background-size: cover;
+background-repeat: no-repeat;
+}
+.nav-link {
+position: relative;
+}
+.nav-link::after {
+content: '';
+position: absolute;
+width: 0;
+height: 2px;
+bottom: -2px;
+left: 0;
+background-color: #1e88e5;
+transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+width: 100%;
+}
+.service-card {
+transition: all 0.3s ease;
+}
+.service-card:hover {
+transform: translateY(-10px);
+}
+.project-card {
+overflow: hidden;
+}
+.project-card img {
+transition: transform 0.5s ease;
+}
+.project-card:hover img {
+transform: scale(1.05);
+}
+.reveal {
+opacity: 0;
+transform: translateY(30px);
+transition: all 0.8s ease;
+}
+.reveal.active {
+opacity: 1;
+transform: translateY(0);
+}
+.custom-checkbox {
+appearance: none;
+-webkit-appearance: none;
+width: 20px;
+height: 20px;
+border: 2px solid #1e88e5;
+border-radius: 4px;
+outline: none;
+cursor: pointer;
+position: relative;
+}
+.custom-checkbox:checked {
+background-color: #1e88e5;
+}
+.custom-checkbox:checked::after {
+content: '';
+position: absolute;
+width: 5px;
+height: 10px;
+border-right: 2px solid white;
+border-bottom: 2px solid white;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -60%) rotate(45deg);
+}
+.form-input:focus {
+outline: none;
+border-color: #1e88e5;
+box-shadow: 0 0 0 2px rgba(30, 136, 229, 0.2);
+}
+.navbar-fixed {
+position: fixed;
+top: 0;
+left: 0;
+right: 0;
+z-index: 1000;
+transition: background-color 0.3s ease;
+}
+.counter-value {
+transition: all 0.5s ease;
+}
+</style>
+</head>
+<body class="bg-white">
+<!-- Navigation -->
+<nav id="navbar" class="navbar-fixed bg-white/90 backdrop-blur-sm shadow-sm">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+    <a href="#" class="text-3xl font-['Pacifico'] text-primary">BEH</a>
+    <div class="hidden lg:flex items-center space-x-8">
+    <a href="index.html" class="nav-link text-gray-800 hover:text-primary font-medium transition-colors">Accueil</a>
+    <a href="propos.html" class="nav-link text-gray-800 hover:text-primary font-medium transition-colors">À propos</a>
+    <a href="services.html" class="nav-link text-gray-800 hover:text-primary font-medium transition-colors">Services</a>
+    <a href="projets.html" class="nav-link text-gray-800 hover:text-primary font-medium transition-colors">Projets</a>
+    <a href="contact.html" class="nav-link text-gray-800 hover:text-primary font-medium transition-colors">Contact</a>
+    <a href="contact.html" class="ml-4 bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">Demander un devis</a>
+    </div>
+    <button id="mobile-menu-button" class="lg:hidden w-10 h-10 flex items-center justify-center text-gray-800">
+    <i class="ri-menu-line ri-lg"></i>
+    </button>
+    </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white w-full border-t border-gray-100">
+        <div class="container mx-auto px-4 py-2 flex flex-col space-y-3">
+        <a href="index.html" class="py-2 text-gray-800 hover:text-primary font-medium">Accueil</a>
+        <a href="propos.html" class="py-2 text-gray-800 hover:text-primary font-medium">À propos</a>
+        <a href="services.html" class="py-2 text-gray-800 hover:text-primary font-medium">Services</a>
+        <a href="projets.html" class="py-2 text-gray-800 hover:text-primary font-medium">Projets</a>
+        <a href="contact.html" class="py-2 text-gray-800 hover:text-primary font-medium">Contact</a>
+        <a href="contact.html" class="inline-block bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">Demander un devis</a>
+        </div>
+        </div>
+        </nav>
+
+    <!-- Contact Section -->
+<section id="contact" class="py-20 bg-gray-50">
+    <div class="container mx-auto px-4">
+    <div class="text-center mb-16">
+    <h2 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4 reveal">Contactez-nous</h2>
+    <div class="w-20 h-1 bg-primary mx-auto mb-6 reveal"></div>
+    <p class="max-w-3xl mx-auto text-gray-600 reveal">Vous avez un projet ou une question ? N'hésitez pas à nous contacter. Notre équipe est à votre disposition pour vous répondre dans les meilleurs délais.</p>
+    </div>
+    <div class="flex flex-col lg:flex-row gap-12">
+    <!-- Formulaire de contact -->
+    <div class="lg:w-1/2 reveal">
+    <div class="bg-white p-8 rounded-lg shadow-sm">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Envoyez-nous un message</h3>
+    <form id="contact-form">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div>
+    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nom complet</label>
+    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre nom" required>
+    </div>
+    <div>
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre email" required>
+    </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div>
+    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
+    <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre téléphone">
+    </div>
+    <div>
+    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Sujet</label>
+    <select id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input pr-8">
+    <option value="">Sélectionnez un sujet</option>
+    <option value="devis">Demande de devis</option>
+    <option value="information">Demande d'information</option>
+    <option value="collaboration">Proposition de collaboration</option>
+    <option value="autre">Autre</option>
+    </select>
+    </div>
+    </div>
+    <div class="mb-6">
+    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+    <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre message" required></textarea>
+    </div>
+    <div class="mb-6 flex items-start">
+    <input type="checkbox" id="consent" name="consent" class="custom-checkbox mr-3" required>
+    <label for="consent" class="text-sm text-gray-600">J'accepte que mes données soient traitées conformément à la politique de confidentialité de BEH.</label>
+    </div>
+    <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+    Envoyer le message
+    <i class="ri-send-plane-line ml-2"></i>
+    </button>
+    </form>
+    </div>
+    </div>
+    <!-- Informations de contact -->
+    <div class="lg:w-1/2 reveal">
+    <div class="bg-white p-8 rounded-lg shadow-sm mb-8">
+    <h3 class="text-2xl font-semibold text-gray-800 mb-6">Nos coordonnées</h3>
+    <div class="space-y-6">
+    <div class="flex items-start">
+    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4">
+    <i class="ri-map-pin-line ri-lg"></i>
+    </div>
+    <div>
+    <h4 class="font-medium text-gray-800 mb-1">Adresse</h4>
+    <p class="text-gray-600">Air France 3<br>Bouaké, Cote d'ivoire</p>
+    </div>
+    </div>
+    <div class="flex items-start">
+        <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4">
+        <i class="ri-phone-line ri-lg"></i>
+        </div>
+        <div>
+        <h4 class="font-medium text-gray-800 mb-1">WhatsApp</h4>
+        <p class="text-gray-600"><a href="https://wa.me/2250104898439">+225 0104898439</a></p>
+        </div>
+        </div>
+    <div class="flex items-start">
+    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4">
+    <i class="ri-phone-line ri-lg"></i>
+    </div>
+    <div>
+    <h4 class="font-medium text-gray-800 mb-1">Téléphone</h4>
+    <p class="text-gray-600"><a href="tel:+225 0748322634">+225 0748322634</a></p>
+    <p class="text-gray-600"><a href="tel:+225 0500702054">+225 0500702054</a></p>
+    <p class="text-gray-600"><a href="tel:+225 2731615230">+225 2731615230</a></p>
+    </div>
+    </div>
+    <div class="flex items-start">
+    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4">
+    <i class="ri-mail-line ri-lg"></i>
+    </div>
+    <div>
+    <h4 class="font-medium text-gray-800 mb-1">Email</h4>
+    <p class="text-gray-600"><a href="mailto:beh@beh-group.com">beh@beh-group.com</a></p>
+    </div>
+    </div>
+    <div class="flex items-start">
+    <div class="w-12 h-12 flex items-center justify-center bg-primary/10 rounded-full text-primary mr-4">
+    <i class="ri-time-line ri-lg"></i>
+    </div>
+    <div>
+    <h4 class="font-medium text-gray-800 mb-1">Horaires d'ouverture</h4>
+    <p class="text-gray-600">Lundi - Vendredi: 8h30 - 18h00<br>Fermé les weekends et jours fériés</p>
+    </div>
+    </div>
+    </div>
+    <div class="mt-8">
+    <h4 class="font-medium text-gray-800 mb-3">Suivez-nous</h4>
+    <div class="flex space-x-4">
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-linkedin-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-twitter-fill"></i>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61574837893954" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-100 rounded-full text-gray-600 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-youtube-fill"></i>
+    </a>
+    </div>
+    </div>
+    </div>
+    <!-- Carte -->
+    <div class="bg-white p-8 rounded-lg shadow-sm h-80 relative overflow-hidden">
+    <img src="https://public.readdy.ai/gen_page/map_placeholder_1280x720.png" alt="Carte" class="absolute inset-0 w-full h-full object-cover">
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+
+       <!-- Footer -->
+<footer class="bg-gray-900 text-white pt-16 pb-8">
+    <div class="container mx-auto px-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+    <!-- Colonne 1 -->
+    <div>
+    <h3 class="text-2xl font-['Pacifico'] text-white mb-6">BEH</h3>
+    <p class="text-gray-400 mb-6">Bureau d'Étude Hydraulique, votre partenaire expert pour tous vos projets liés à l'eau et à l'environnement depuis 2025.</p>
+    <div class="flex space-x-4">
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-linkedin-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-twitter-fill"></i>
+    </a>
+    <a href="https://www.facebook.com/profile.php?id=61574837893954" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-facebook-fill"></i>
+    </a>
+    <a href="#" class="w-10 h-10 flex items-center justify-center bg-gray-800 rounded-full text-gray-400 hover:bg-primary hover:text-white transition-colors">
+    <i class="ri-youtube-fill"></i>
+    </a>
+    </div>
+    </div>
+    <!-- Colonne 2 -->
+    <div>
+    <h4 class="text-lg font-semibold text-white mb-6">Liens rapides</h4>
+    <ul class="space-y-3">
+    <li><a href="index.html" class="text-gray-400 hover:text-primary transition-colors">Accueil</a></li>
+    <li><a href="propos.html" class="text-gray-400 hover:text-primary transition-colors">À propos</a></li>
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">Services</a></li>
+    <li><a href="projets.html" class="text-gray-400 hover:text-primary transition-colors">Projets</a></li>
+    <li><a href="contact.html" class="text-gray-400 hover:text-primary transition-colors">Contact</a></li>
+    </ul>
+    </div>
+    <!-- Colonne 3 -->
+    <div>
+    <h4 class="text-lg font-semibold text-white mb-6">Nos services</h4>
+    <ul class="space-y-3">
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">MINES</a></li>
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">HYDRAULIQUES</a></li>
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">FORAGES</a></li>
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">BTP (Bâtiment)</a></li>
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">ENERGIE SOLAIRE</a></li>
+    <li><a href="services.html" class="text-gray-400 hover:text-primary transition-colors">ELECTRIFICATION</a></li>
+    </ul>
+    </div>
+    <!-- Colonne 4 -->
+    <div>
+    <h4 class="text-lg font-semibold text-white mb-6">E-Mail</h4>
+    <p class="text-gray-400 mb-4">Inscrivez-vous pour recevoir nos actualités et nos offres spéciales.</p>
+    <form class="mb-4">
+    <div class="flex">
+    <input type="email" placeholder="Votre email" class="px-4 py-2 rounded-l-button w-full focus:outline-none text-gray-800 border-none">
+    <button type="submit" class="bg-primary text-white px-4 py-2 rounded-r-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+    <i class="ri-send-plane-line"></i>
+    </button>
+    </div>
+    </form>
+    <p class="text-sm text-gray-500">En vous inscrivant, vous acceptez notre politique de confidentialité.</p>
+    </div>
+    </div>
+    <div class="border-t border-gray-800 pt-8">
+    <div class="flex flex-col md:flex-row justify-between items-center">
+    <p class="text-gray-500 text-sm mb-4 md:mb-0">&copy; 2025 Bureau d'Étude Hydraulique. Tous droits réservés.</p>
+    <div class="flex space-x-6">
+    <a href="#" class="text-gray-500 text-sm hover:text-primary transition-colors">Mentions légales</a>
+    <a href="#" class="text-gray-500 text-sm hover:text-primary transition-colors">Politique de confidentialité</a>
+    <a href="#" class="text-gray-500 text-sm hover:text-primary transition-colors">Conditions générales</a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </footer>
+    <!-- Modal Projet -->
+    <div id="project-modal" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+    <div class="p-6">
+    <div class="flex justify-between items-center mb-6">
+    <h3 id="modal-title" class="text-2xl font-semibold text-gray-800"></h3>
+    <button id="close-modal" class="w-8 h-8 flex items-center justify-center text-gray-500 hover:text-gray-700">
+    <i class="ri-close-line ri-lg"></i>
+    </button>
+    </div>
+    <div id="modal-content">
+    <!-- Le contenu sera injecté dynamiquement -->
+    </div>
+    </div>
+    </div>
+    </div>
+    <!-- Scripts -->
+    <script id="navbar-script">
+    document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.getElementById('navbar');
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    // Gestion du menu mobile
+    mobileMenuButton.addEventListener('click', function() {
+    mobileMenu.classList.toggle('hidden');
+    // Changer l'icône du bouton
+    const icon = mobileMenuButton.querySelector('i');
+    if (mobileMenu.classList.contains('hidden')) {
+    icon.classList.remove('ri-close-line');
+    icon.classList.add('ri-menu-line');
+    } else {
+    icon.classList.remove('ri-menu-line');
+    icon.classList.add('ri-close-line');
+    }
+    });
+    // Fermer le menu mobile lors du clic sur un lien
+    const mobileLinks = mobileMenu.querySelectorAll('a');
+    mobileLinks.forEach(link => {
+    link.addEventListener('click', function() {
+    mobileMenu.classList.add('hidden');
+    const icon = mobileMenuButton.querySelector('i');
+    icon.classList.remove('ri-close-line');
+    icon.classList.add('ri-menu-line');
+    });
+    });
+    // Changer le style de la navbar au scroll
+    window.addEventListener('scroll', function() {
+    if (window.scrollY > 50) {
+    navbar.classList.add('bg-white', 'shadow-md');
+    navbar.classList.remove('bg-white/90', 'backdrop-blur-sm', 'shadow-sm');
+    } else {
+    navbar.classList.remove('bg-white', 'shadow-md');
+    navbar.classList.add('bg-white/90', 'backdrop-blur-sm', 'shadow-sm');
+    }
+    });
+    // Smooth scroll pour les liens d'ancrage
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    if (targetId === '#') return;
+    const targetElement = document.querySelector(targetId);
+    if (targetElement) {
+    window.scrollTo({
+    top: targetElement.offsetTop - 80,
+    behavior: 'smooth'
+    });
+    }
+    });
+    });
+    });
+    </script>
+    <script id="reveal-animation-script">
+    document.addEventListener('DOMContentLoaded', function() {
+    // Fonction pour révéler les éléments au scroll
+    function revealElements() {
+    const reveals = document.querySelectorAll('.reveal');
+    reveals.forEach(element => {
+    const windowHeight = window.innerHeight;
+    const elementTop = element.getBoundingClientRect().top;
+    const elementVisible = 150;
+    if (elementTop < windowHeight - elementVisible) {
+    element.classList.add('active');
+    }
+    });
+    }
+    // Appeler la fonction au chargement
+    revealElements();
+    // Appeler la fonction au scroll
+    window.addEventListener('scroll', revealElements);
+    });
+    </script>
+    <script id="counter-animation-script">
+    document.addEventListener('DOMContentLoaded', function() {
+    // Animation des compteurs
+    const counters = document.querySelectorAll('.counter-value');
+    let hasStarted = false;
+    function startCounters() {
+    if (hasStarted) return;
+    const counterSection = document.querySelector('#a-propos');
+    const sectionTop = counterSection.getBoundingClientRect().top;
+    if (sectionTop < window.innerHeight * 0.75) {
+    hasStarted = true;
+    counters.forEach(counter => {
+    const target = +counter.dataset.target;
+    let count = 0;
+    const duration = 2000; // 2 secondes
+    const increment = target / (duration / 16); // 60fps
+    const updateCount = () => {
+    count += increment;
+    if (count < target) {
+    counter.innerText = Math.ceil(count);
+    requestAnimationFrame(updateCount);
+    } else {
+    counter.innerText = target;
+    }
+    };
+    updateCount();
+    });
+    }
+    }
+    // Appeler la fonction au chargement et au scroll
+    startCounters();
+    window.addEventListener('scroll', startCounters);
+    });
+    </script>
+    <script id="project-filter-script">
+    document.addEventListener('DOMContentLoaded', function() {
+    // Filtrage des projets
+    const filterButtons = document.querySelectorAll('.project-filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+    filterButtons.forEach(button => {
+    button.addEventListener('click', function() {
+    const filter = this.dataset.filter;
+    // Changer l'état actif des boutons
+    filterButtons.forEach(btn => {
+    btn.classList.remove('bg-primary', 'text-white');
+    btn.classList.add('bg-white', 'text-gray-700', 'hover:bg-gray-100');
+    });
+    this.classList.remove('bg-white', 'text-gray-700', 'hover:bg-gray-100');
+    this.classList.add('bg-primary', 'text-white');
+    // Filtrer les projets
+    projectCards.forEach(card => {
+    if (filter === 'all' || card.dataset.category === filter) {
+    card.style.display = 'block';
+    } else {
+    card.style.display = 'none';
+    }
+    });
+    });
+    });
+    // Bouton "Voir plus de projets"
+    const loadMoreButton = document.getElementById('load-more-projects');
+    loadMoreButton.addEventListener('click', function() {
+    // Simuler le chargement de plus de projets (dans un cas réel, cela chargerait des projets depuis une API)
+    this.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i> Chargement...';
+    setTimeout(() => {
+    this.innerHTML = 'Tous les projets sont chargés';
+    this.disabled = true;
+    this.classList.add('opacity-50', 'cursor-not-allowed');
+    }, 1500);
+    });
+    });
+    </script>
+    <script id="project-modal-script">
+    document.addEventListener('DOMContentLoaded', function() {
+    // Gestion des modals de projets
+    const projectButtons = document.querySelectorAll('.project-details-btn');
+    const modal = document.getElementById('project-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalContent = document.getElementById('modal-content');
+    const closeModal = document.getElementById('close-modal');
+    // Données des projets (dans un cas réel, ces données viendraient d'une API)
+    const projectsData = {
+    '1': {
+    title: 'Exploitation Minière de Cuivre',
+    location: 'Katanga, RDC',
+    date: '2024',
+    client: 'Mining Corporation RDC',
+    description: 'Projet d\'exploitation minière à grande échelle comprenant l\'étude géologique, l\'optimisation des processus d\'extraction et la gestion environnementale du site.',
+    challenges: 'La complexité du terrain et la nécessité de maintenir des normes environnementales strictes tout en maximisant la production ont représenté des défis majeurs.',
+    solutions: 'Mise en place d\'un système d\'extraction innovant utilisant des technologies de pointe pour l\'analyse géologique et l\'optimisation des processus d\'extraction.',
+    results: 'Augmentation de 40% de la production tout en réduisant l\'impact environnemental de 30% grâce à des méthodes d\'extraction plus efficientes.',
+    image: 'https://readdy.ai/api/search-image?query=detailed%2520view%2520of%2520modern%2520copper%2520mine%2520operations%252C%2520professional%2520photograph%2520showing%2520mining%2520equipment%2520and%2520extraction%2520process%252C%2520technical%2520details%2520visible%252C%2520large%2520scale%2520operation%252C%2520sunset%2520lighting&width=800&height=500&seq=21&orientation=landscape'
+    },
+    '2': {
+    title: 'Centrale Hydroélectrique',
+    location: 'Kinshasa, RDC',
+    date: '2023',
+    client: 'Énergie RDC',
+    description: 'Construction d\'une centrale hydroélectrique moderne pour fournir de l\'électricité à une zone urbaine en pleine croissance.',
+    challenges: 'Gestion des variations saisonnières du débit d\'eau et intégration au réseau électrique existant.',
+    solutions: 'Installation de turbines de dernière génération avec système de contrôle automatisé pour optimiser la production.',
+    results: 'Production de 150MW d\'électricité propre, alimentant plus de 100,000 foyers.',
+    image: 'https://readdy.ai/api/search-image?query=modern%2520hydroelectric%2520power%2520station%2520interior%252C%2520professional%2520photograph%2520showing%2520turbines%2520and%2520control%2520systems%252C%2520technical%2520details%2520visible%252C%2520water%2520power%2520generation%252C%2520bright%2520lighting&width=800&height=500&seq=22&orientation=landscape'
+    },
+    '3': {
+    title: 'Forage d\'Eau Potable',
+    location: 'Lubumbashi, RDC',
+    date: '2023',
+    client: 'REGIDESO',
+    description: 'Programme de forages profonds pour l\'approvisionnement en eau potable d\'une communauté de 50,000 habitants.',
+    challenges: 'Terrain géologique complexe et nécessité d\'assurer une eau de qualité constante.',
+    solutions: 'Utilisation de techniques de forage avancées et installation de systèmes de traitement d\'eau modernes.',
+    results: 'Réalisation de 15 forages produisant 2000m3 d\'eau potable par jour.',
+    image: 'https://readdy.ai/api/search-image?query=water%2520well%2520drilling%2520operation%2520in%2520progress%252C%2520professional%2520photograph%2520showing%2520drilling%2520equipment%2520and%2520water%2520extraction%2520process%252C%2520technical%2520details%2520visible%252C%2520rural%2520setting%252C%2520sunny%2520day&width=800&height=500&seq=23&orientation=landscape'
+    },
+    '4': {
+    title: 'Centre Commercial',
+    location: 'Goma, RDC',
+    date: '2024',
+    client: 'Développement Urbain RDC',
+    description: 'Construction d\'un centre commercial moderne sur trois niveaux, intégrant les dernières normes de construction.',
+    challenges: 'Construction en zone sismique et nécessité d\'une intégration harmonieuse dans le tissu urbain.',
+    solutions: 'Utilisation de techniques de construction antisismiques et de matériaux durables.',
+    results: 'Réalisation d\'un bâtiment de 15000m² répondant aux standards internationaux.',
+    image: 'https://readdy.ai/api/search-image?query=modern%2520shopping%2520mall%2520construction%2520site%252C%2520professional%2520photograph%2520showing%2520building%2520progress%252C%2520structural%2520elements%252C%2520construction%2520equipment%252C%2520workers%252C%2520technical%2520details%2520visible%252C%2520sunny%2520day&width=800&height=500&seq=24&orientation=landscape'
+    },
+    '5': {
+    title: 'Parc Solaire',
+    location: 'Kolwezi, RDC',
+    date: '2024',
+    client: 'Green Energy Africa',
+    description: 'Installation d\'un parc solaire de 50MW pour alimenter une zone industrielle en pleine expansion.',
+    challenges: 'Optimisation de la production en fonction des conditions climatiques locales.',
+    solutions: 'Déploiement de panneaux solaires dernière génération avec système de suivi solaire.',
+    results: 'Production de 50MW d\'énergie verte, réduction des émissions de CO2 de 75,000 tonnes par an.',
+    image: 'https://readdy.ai/api/search-image?query=large%2520scale%2520solar%2520farm%2520installation%252C%2520professional%2520photograph%2520showing%2520rows%2520of%2520solar%2520panels%252C%2520technical%2520infrastructure%252C%2520power%2520generation%2520equipment%252C%2520sunny%2520day%252C%2520clear%2520blue%2520sky&width=800&height=500&seq=25&orientation=landscape'
+    },
+    '6': {
+    title: 'Électrification Urbaine',
+    location: 'Matadi, RDC',
+    date: '2023',
+    client: 'SNEL',
+    description: 'Projet d\'électrification urbaine couvrant 5 quartiers résidentiels, incluant l\'installation de transformateurs et de réseaux de distribution.',
+    challenges: 'Intégration au réseau existant et minimisation des perturbations pendant les travaux.',
+    solutions: 'Planification détaillée des phases de travaux et utilisation d\'équipements de dernière génération.',
+    results: 'Raccordement de 15,000 foyers au réseau électrique avec une fiabilité accrue.',
+    image: 'https://readdy.ai/api/search-image?query=urban%2520electrical%2520grid%2520installation%252C%2520professional%2520photograph%2520showing%2520power%2520distribution%2520network%252C%2520transformers%252C%2520power%2520lines%252C%2520technical%2520infrastructure%252C%2520city%2520background%252C%2520sunset%2520lighting&width=800&height=500&seq=26&orientation=landscape'
+    description: 'Le barrage de Montpezat nécessitait une modernisation de ses évacuateurs de crue pour faire face aux événements climatiques extrêmes. Notre bureau d\'étude a réalisé une modélisation hydraulique complète et proposé des solutions techniques innovantes pour optimiser les écoulements et garantir la sécurité de l\'ouvrage.',
+    challenges: 'La principale difficulté de ce projet résidait dans la nécessité de maintenir l\'exploitation du barrage pendant les travaux et de prendre en compte les contraintes environnementales liées à la présence d\'espèces protégées en aval.',
+    solutions: 'Nous avons conçu un système d\'évacuateurs de crue à seuils variables permettant une gestion fine des débits et limitant l\'impact sur l\'environnement. La modélisation 3D des écoulements nous a permis d\'optimiser la géométrie des ouvrages et de réduire les coûts de construction.',
+    results: 'Le nouveau système d\'évacuateurs permet désormais de gérer des crues exceptionnelles avec une période de retour de 1000 ans, tout en préservant la qualité écologique du cours d\'eau en aval.',
+    image: 'https://readdy.ai/api/search-image?query=detailed%2520view%2520of%2520modern%2520dam%2520spillway%2520system%252C%2520professional%2520engineering%2520photograph%2520showing%2520water%2520flowing%2520through%2520concrete%2520hydraulic%2520structure%252C%2520technical%2520details%2520visible%252C%2520sunny%2520day%252C%2520high%2520resolution&width=800&height=500&seq=9&orientation=landscape'
+    },
+    '2': {
+    title: 'Station d\'épuration de Lyon-Sud',
+    location: 'Rhône, France',
+    date: '2022',
+    client: 'Métropole de Lyon',
+    description: 'Conception et dimensionnement d\'une station d\'épuration moderne de 50 000 équivalents-habitants intégrant un traitement tertiaire avancé pour l\'élimination des micropolluants. Ce projet s\'inscrit dans une démarche globale d\'amélioration de la qualité des rejets dans le Rhône.',
+    challenges: 'L\'implantation en zone urbaine dense imposait des contraintes fortes en termes d\'emprise au sol et de nuisances (odeurs, bruit). De plus, les objectifs de qualité des rejets étaient particulièrement exigeants.',
+    solutions: 'Nous avons opté pour une filière de traitement compacte combinant un réacteur biologique à membranes (MBR) et un traitement tertiaire par ozonation et filtration sur charbon actif. L\'ensemble des ouvrages a été confiné et désodorisé.',
+    results: 'La station permet d\'atteindre des performances épuratoires exceptionnelles, notamment sur les paramètres azote, phosphore et micropolluants, tout en s\'intégrant parfaitement dans son environnement urbain.',
+    image: 'https://readdy.ai/api/search-image?query=modern%2520wastewater%2520treatment%2520plant%2520interior%252C%2520professional%2520engineering%2520photograph%2520showing%2520clean%2520industrial%2520facility%2520with%2520advanced%2520filtration%2520systems%252C%2520control%2520panels%252C%2520blue%2520water%2520tanks%252C%2520technical%2520equipment%252C%2520bright%2520lighting%252C%2520high%2520resolution&width=800&height=500&seq=10&orientation=landscape'
+    },
+    '3': {
+    title: 'Système d\'irrigation Provence',
+    location: 'Bouches-du-Rhône, France',
+    date: '2021',
+    client: 'Association Syndicale Autorisée d\'Irrigation',
+    description: 'Conception d\'un système d\'irrigation goutte-à-goutte intelligent pour 1200 hectares de cultures maraîchères et arboricoles en Provence. Ce projet visait à remplacer un ancien réseau d\'irrigation gravitaire très consommateur en eau.',
+    challenges: 'La topographie variée du terrain et l\'hétérogénéité des cultures nécessitaient une approche sur mesure. De plus, les ressources en eau étant limitées, il fallait optimiser chaque goutte d\'eau utilisée.',
+    solutions: 'Nous avons conçu un réseau sous pression sectorisé, piloté par une station de contrôle centralisée. Chaque secteur est équipé de capteurs d\'humidité du sol et de stations météo connectées permettant d\'ajuster l\'irrigation en temps réel.',
+    results: 'Le nouveau système a permis de réduire la consommation d\'eau de 40% tout en améliorant les rendements agricoles. Les agriculteurs peuvent désormais piloter leur irrigation à distance via une application mobile.',
+    image: 'https://readdy.ai/api/search-image?query=modern%2520drip%2520irrigation%2520system%2520in%2520Mediterranean%2520farmland%252C%2520professional%2520photograph%2520showing%2520detailed%2520view%2520of%2520irrigation%2520equipment%2520in%2520fruit%2520orchard%252C%2520water%2520droplets%2520visible%252C%2520control%2520system%252C%2520sunny%2520day%252C%2520high%2520resolution&width=800&height=500&seq=11&orientation=landscape'
+    },
+    '4': {
+    title: 'Restauration écologique de la Garonne',
+    location: 'Haute-Garonne, France',
+    date: '2022',
+    client: 'Syndicat Mixte d\'Études et d\'Aménagement de la Garonne',
+    description: 'Étude et mise en œuvre d\'un programme ambitieux de restauration écologique sur 15 km de berges de la Garonne, incluant la création de zones humides et la renaturation du lit mineur.',
+    challenges: 'Le fleuve avait subi de nombreuses modifications anthropiques (endiguement, extraction de granulats) ayant conduit à une incision du lit et une dégradation des habitats aquatiques.',
+    solutions: 'Notre approche a combiné des techniques de génie écologique (fascines, caissons végétalisés) et des interventions plus lourdes (reconnexion d\'anciens bras morts, création de banquettes submersibles). Un suivi écologique complet a été mis en place.',
+    results: 'Deux ans après les travaux, on observe déjà une diversification des habitats aquatiques et une augmentation significative de la biodiversité. Les zones humides créées jouent également un rôle dans l\'écrêtement des crues.',
+    image: 'https://readdy.ai/api/search-image?query=river%2520restoration%2520project%2520results%252C%2520professional%2520photograph%2520showing%2520naturalized%2520riverbank%2520with%2520native%2520vegetation%252C%2520restored%2520meanders%252C%2520clear%2520flowing%2520water%252C%2520ecological%2520engineering%2520features%2520visible%252C%2520sunny%2520day%252C%2520high%2520resolution&width=800&height=500&seq=12&orientation=landscape'
+    },
+    '5': {
+    title: 'Protection contre les inondations',
+    location: 'Vaucluse, France',
+    date: '2023',
+    client: 'Communauté de Communes du Pays des Sorgues',
+    description: 'Étude hydraulique et conception d\'ouvrages de protection contre les crues pour une zone urbaine de 5000 habitants régulièrement touchée par des inondations.',
+    challenges: 'L\'urbanisation croissante et l\'imperméabilisation des sols avaient aggravé le risque d\'inondation. Les solutions classiques de digues n\'étaient pas adaptées au contexte paysager sensible.',
+    solutions: 'Nous avons privilégié une approche intégrée combinant des zones d\'expansion de crue en amont, des noues paysagères et un système d\'alerte précoce. La modélisation hydraulique 2D nous a permis d\'optimiser le dimensionnement des ouvrages.',
+    results: 'Le dispositif mis en place protège efficacement la zone urbaine contre une crue centennale tout en s\'intégrant parfaitement dans le paysage. Les zones d\'expansion de crue servent également d\'espaces naturels récréatifs en période normale.',
+    image: 'https://readdy.ai/api/search-image?query=flood%2520protection%2520infrastructure%2520integrated%2520in%2520landscape%252C%2520professional%2520photograph%2520showing%2520naturalized%2520flood%2520control%2520basin%2520with%2520water%2520retention%2520capacity%252C%2520technical%2520hydraulic%2520structures%2520blending%2520with%2520environment%252C%2520urban%2520area%2520visible%2520in%2520background%252C%2520sunny%2520day%252C%2520high%2520resolution&width=800&height=500&seq=13&orientation=landscape'
+    },
+    '6': {
+    title: 'Gestion des eaux pluviales',
+    location: 'Loire-Atlantique, France',
+    date: '2021',
+    client: 'Ville de Nantes',
+    description: 'Conception d\'un système innovant de gestion des eaux pluviales pour un éco-quartier de 20 hectares, basé sur les principes du développement durable et de la ville perméable.',
+    challenges: 'Le projet devait répondre à des objectifs ambitieux de zéro rejet au réseau d\'assainissement et d\'intégration paysagère des ouvrages hydrauliques.',
+    solutions: 'Nous avons développé une approche multi-échelles combinant des toitures végétalisées, des noues paysagères, des jardins de pluie et des bassins de rétention/infiltration. L\'ensemble du système est conçu pour être visible et pédagogique.',
+    results: 'Le quartier gère 100% de ses eaux pluviales sur site, y compris lors d\'événements exceptionnels. Les espaces hydrauliques sont devenus des lieux de vie appréciés des habitants et contribuent à réduire l\'effet d\'îlot de chaleur urbain.',
+    image: 'https://readdy.ai/api/search-image?query=sustainable%2520urban%2520stormwater%2520management%2520system%252C%2520professional%2520photograph%2520showing%2520rain%2520garden%2520in%2520modern%2520eco-district%252C%2520green%2520infrastructure%2520with%2520water%2520collection%2520features%252C%2520permeable%2520surfaces%252C%2520native%2520plants%252C%2520urban%2520setting%252C%2520sunny%2520day%252C%2520high%2520resolution&width=800&height=500&seq=14&orientation=landscape'
+    }
+    };
+    // Ouvrir la modal avec les détails du projet
+    projectButtons.forEach(button => {
+    button.addEventListener('click', function() {
+    const projectId = this.dataset.project;
+    const project = projectsData[projectId];
+    if (project) {
+    modalTitle.textContent = project.title;
+    modalContent.innerHTML = `
+    <div class="mb-6">
+    <img src="${project.image}" alt="${project.title}" class="w-full h-64 object-cover rounded-lg">
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+    <div class="bg-gray-50 p-4 rounded">
+    <h4 class="font-medium text-gray-800 mb-1">Client</h4>
+    <p class="text-gray-600">${project.client}</p>
+    </div>
+    <div class="bg-gray-50 p-4 rounded">
+    <h4 class="font-medium text-gray-800 mb-1">Localisation</h4>
+    <p class="text-gray-600">${project.location}</p>
+    </div>
+    <div class="bg-gray-50 p-4 rounded">
+    <h4 class="font-medium text-gray-800 mb-1">Date de réalisation</h4>
+    <p class="text-gray-600">${project.date}</p>
+    </div>
+    </div>
+    <div class="mb-6">
+    <h4 class="text-xl font-semibold text-gray-800 mb-3">Description du projet</h4>
+    <p class="text-gray-600 mb-4">${project.description}</p>
+    </div>
+    <div class="mb-6">
+    <h4 class="text-xl font-semibold text-gray-800 mb-3">Défis</h4>
+    <p class="text-gray-600 mb-4">${project.challenges}</p>
+    </div>
+    <div class="mb-6">
+    <h4 class="text-xl font-semibold text-gray-800 mb-3">Solutions</h4>
+    <p class="text-gray-600 mb-4">${project.solutions}</p>
+    </div>
+    <div>
+    <h4 class="text-xl font-semibold text-gray-800 mb-3">Résultats</h4>
+    <p class="text-gray-600">${project.results}</p>
+    </div>
+    `;
+    modal.classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+    }
+    });
+    });
+    // Fermer la modal
+    closeModal.addEventListener('click', function() {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    });
+    // Fermer la modal en cliquant en dehors
+    modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    }
+    });
+    // Fermer la modal avec la touche Echap
+    document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && !modal.classList.contains('hidden')) {
+    modal.classList.add('hidden');
+    document.body.style.overflow = 'auto';
+    }
+    });
+    });
+    </script>
+    <script id="contact-form-script">
+    document.addEventListener('DOMContentLoaded', function() {
+    // Gestion du formulaire de contact
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function(e) {
+    e.preventDefault();
+    // Simuler l'envoi du formulaire
+    const submitButton = this.querySelector('button[type="submit"]');
+    const originalText = submitButton.innerHTML;
+    submitButton.innerHTML = '<i class="ri-loader-4-line animate-spin mr-2"></i> Envoi en cours...';
+    submitButton.disabled = true;
+    setTimeout(() => {
+    // Afficher un message de succès
+    contactForm.innerHTML = `
+    <div class="bg-green-50 border border-green-200 rounded-lg p-6 text-center">
+    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+    <i class="ri-check-line text-green-500 ri-2x"></i>
+    </div>
+    <h3 class="text-xl font-semibold text-gray-800 mb-2">Message envoyé avec succès !</h3>
+    <p class="text-gray-600 mb-6">Merci de nous avoir contactés. Notre équipe vous répondra dans les meilleurs délais.</p>
+    <button type="button" id="reset-form" class="bg-primary text-white px-6 py-2 rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+    Envoyer un nouveau message
+    </button>
+    </div>
+    `;
+    // Réinitialiser le formulaire
+    document.getElementById('reset-form').addEventListener('click', function() {
+    contactForm.innerHTML = `
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div>
+    <label for="name" class="block text-sm font-medium text-gray-700 mb-2">Nom complet</label>
+    <input type="text" id="name" name="name" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre nom" required>
+    </div>
+    <div>
+    <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+    <input type="email" id="email" name="email" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre email" required>
+    </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+    <div>
+    <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Téléphone</label>
+    <input type="tel" id="phone" name="phone" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre téléphone">
+    </div>
+    <div>
+    <label for="subject" class="block text-sm font-medium text-gray-700 mb-2">Sujet</label>
+    <select id="subject" name="subject" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input pr-8">
+    <option value="">Sélectionnez un sujet</option>
+    <option value="devis">Demande de devis</option>
+    <option value="information">Demande d'information</option>
+    <option value="collaboration">Proposition de collaboration</option>
+    <option value="autre">Autre</option>
+    </select>
+    </div>
+    </div>
+    <div class="mb-6">
+    <label for="message" class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+    <textarea id="message" name="message" rows="5" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary form-input" placeholder="Votre message" required></textarea>
+    </div>
+    <div class="mb-6 flex items-start">
+    <input type="checkbox" id="consent" name="consent" class="custom-checkbox mr-3" required>
+    <label for="consent" class="text-sm text-gray-600">J'accepte que mes données soient traitées conformément à la politique de confidentialité de BEH.</label>
+    </div>
+    <button type="submit" class="w-full bg-primary text-white py-3 px-6 rounded-button hover:bg-primary/90 transition-colors whitespace-nowrap">
+    Envoyer le message
+    <i class="ri-send-plane-line ml-2"></i>
+    </button>
+    `;
+    });
+    }, 2000);
+    });
+    });
+    </script>
+    
+</body>
+</html>
